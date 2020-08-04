@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import DatePicker from 'react-date-picker';
+// import { Dropdown } from 'semantic-ui-react'
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
 import ChartistGraph from "react-chartist";
 import { Grid, Row, Col, Table} from "react-bootstrap";
 
@@ -20,10 +23,31 @@ import {
   legendBar
 } from "variables/Variables.jsx";
 
+const options = [
+  'one', 'two', 'three'
+  // {
+  //   key: 'Hess',
+  //   text: 'Hess',
+  //   value: 'Hess',
+  //   image: { avatar: true, src: '/images/avatar/small/jenny.jpg' },
+  // },
+  //   key: 'Jenny',
+  //   text: 'Jenny',
+  //   value: 'Jenny',
+  //   image: { avatar: true, src: '/images/avatar/small/jenny.jpg' },
+  // },
+  //   key: 'JennyHess',
+  //   text: 'JennyHess',
+  //   value: 'JennyHess',
+  //   image: { avatar: true, src: '/images/avatar/small/jenny.jpg' },
+  // },
+]
+const defaultOption = options[0];
+
 class Pricing extends Component {
-  // state = {
-  //   date: new Date(),
-  // }
+  state = {
+    date: new Date(),
+  }
   onChange = date => this.setState({ date })
   createLegend(json) {
     var legend = [];
@@ -157,14 +181,19 @@ class Pricing extends Component {
                 statsIcon="fa fa-history"
                 id="chartHours"
                 title="Users Behavior"
-                category="24 Hours performance"
                 stats="Updated 3 minutes ago"
                 content={
                   <div className="ct-chart">
-                    {/* <DatePicker
+                    <DatePicker
                       onChange={this.onChange}
                       value={this.state.date}
-                    /> */}
+                    />
+                    <Dropdown 
+                      options={options} 
+                      onChange={this._onSelect} 
+                      value={defaultOption} 
+                      placeholder="Select an option" 
+                    />
                     <ChartistGraph
                       data={dataSales}
                       type="Line"
