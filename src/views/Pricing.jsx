@@ -1,15 +1,14 @@
 import React, { Component } from "react";
-import DatePicker from 'react-date-picker';
-// import { Dropdown } from 'semantic-ui-react'
-import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import ChartistGraph from "react-chartist";
-import { Grid, Row, Col, Table} from "react-bootstrap";
+import { Grid, Row, Col, Table } from "react-bootstrap";
 
 import { thArray, tdArray } from "variables/Variables.jsx";
 import { Card } from "components/Card/Card.jsx";
 import { StatsCard } from "components/StatsCard/StatsCard.jsx";
-import { Tasks } from "components/Tasks/Tasks.jsx";
+import { DatePicker, Select } from 'antd';
+import 'antd/dist/antd.css';
+
 import {
   dataPie,
   legendPie,
@@ -23,26 +22,7 @@ import {
   legendBar
 } from "variables/Variables.jsx";
 
-const options = [
-  'one', 'two', 'three'
-  // {
-  //   key: 'Hess',
-  //   text: 'Hess',
-  //   value: 'Hess',
-  //   image: { avatar: true, src: '/images/avatar/small/jenny.jpg' },
-  // },
-  //   key: 'Jenny',
-  //   text: 'Jenny',
-  //   value: 'Jenny',
-  //   image: { avatar: true, src: '/images/avatar/small/jenny.jpg' },
-  // },
-  //   key: 'JennyHess',
-  //   text: 'JennyHess',
-  //   value: 'JennyHess',
-  //   image: { avatar: true, src: '/images/avatar/small/jenny.jpg' },
-  // },
-]
-const defaultOption = options[0];
+const { Option } = Select;
 
 class Pricing extends Component {
   state = {
@@ -175,6 +155,7 @@ class Pricing extends Component {
               />
             </Col>
           </Row>
+
           <Row>
             <Col md={12}>
               <Card
@@ -183,17 +164,28 @@ class Pricing extends Component {
                 title="Users Behavior"
                 stats="Updated 3 minutes ago"
                 content={
-                  <div className="ct-chart">
-                    <DatePicker
-                      onChange={this.onChange}
-                      value={this.state.date}
-                    />
-                    <Dropdown 
-                      options={options} 
-                      onChange={this._onSelect} 
-                      value={defaultOption} 
-                      placeholder="Select an option" 
-                    />
+                  <div>
+                    <Row>
+                      <Col md={4}>
+                        <DatePicker style={{ width: 250 }}/>
+                      </Col>
+                      <Col md={4}>
+                        <Select
+                          showSearch
+                          style={{ width: 250 }}
+                          placeholder="Select a person"
+                          optionFilterProp="children"
+                          filterOption={(input, option) =>
+                            option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                          }
+                        >
+                          <Option value="jack">Jack</Option>
+                          <Option value="lucy">Lucy</Option>
+                          <Option value="tom">Tom</Option>
+                        </Select>
+                      </Col>
+                    </Row>
+
                     <ChartistGraph
                       data={dataSales}
                       type="Line"
@@ -229,7 +221,7 @@ class Pricing extends Component {
           </Row>
 
           <Row>
-          <Col md={12}>
+            <Col md={12}>
               <Card
                 title="Striped Table with Hover"
                 category="Here is a subtitle for this table"
