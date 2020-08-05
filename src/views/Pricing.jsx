@@ -44,10 +44,18 @@ class Pricing extends Component {
       <div className="content">
         <Grid fluid>
           <Row>
+            <div>
+              <Row>
+                <Col md={10}>
+                  <DatePicker style={{ width: 250 }}/>
+                </Col>
+                
+              </Row>
+            </div>
             <Col lg={2} sm={6}>
               <StatsCard
                 bigIcon={<i className="pe-7s-server text-warning" />}
-                statsText="Capacity"
+                statsText="Carrot"
                 statsValue="105GB"
                 statsIcon={<i className="fa fa-refresh" />}
                 statsIconText="Updated now"
@@ -56,7 +64,7 @@ class Pricing extends Component {
             <Col lg={2} sm={6}>
               <StatsCard
                 bigIcon={<i className="pe-7s-wallet text-success" />}
-                statsText="Revenue"
+                statsText="Lettuce"
                 statsValue="$1,345"
                 statsIcon={<i className="fa fa-calendar-o" />}
                 statsIconText="Last day"
@@ -65,7 +73,7 @@ class Pricing extends Component {
             <Col lg={2} sm={6}>
               <StatsCard
                 bigIcon={<i className="pe-7s-graph1 text-danger" />}
-                statsText="Errors"
+                statsText="Potato"
                 statsValue="23"
                 statsIcon={<i className="fa fa-clock-o" />}
                 statsIconText="In the last hour"
@@ -74,7 +82,7 @@ class Pricing extends Component {
             <Col lg={2} sm={6}>
               <StatsCard
                 bigIcon={<i className="fa fa-twitter text-info" />}
-                statsText="Followers"
+                statsText="Brinjal"
                 statsValue="+45"
                 statsIcon={<i className="fa fa-refresh" />}
                 statsIconText="Updated now"
@@ -83,7 +91,7 @@ class Pricing extends Component {
             <Col lg={2} sm={6}>
               <StatsCard
                 bigIcon={<i className="pe-7s-graph1 text-danger" />}
-                statsText="Errors"
+                statsText="Tomato"
                 statsValue="23"
                 statsIcon={<i className="fa fa-clock-o" />}
                 statsIconText="In the last hour"
@@ -92,7 +100,7 @@ class Pricing extends Component {
             <Col lg={2} sm={6}>
               <StatsCard
                 bigIcon={<i className="pe-7s-graph1 text-danger" />}
-                statsText="Errors"
+                statsText="Broccoli"
                 statsValue="23"
                 statsIcon={<i className="fa fa-clock-o" />}
                 statsIconText="In the last hour"
@@ -103,7 +111,7 @@ class Pricing extends Component {
             <Col lg={2} sm={6}>
               <StatsCard
                 bigIcon={<i className="pe-7s-server text-warning" />}
-                statsText="Capacity"
+                statsText="Garlic"
                 statsValue="105GB"
                 statsIcon={<i className="fa fa-refresh" />}
                 statsIconText="Updated now"
@@ -112,7 +120,7 @@ class Pricing extends Component {
             <Col lg={2} sm={6}>
               <StatsCard
                 bigIcon={<i className="pe-7s-wallet text-success" />}
-                statsText="Revenue"
+                statsText="Watermelon"
                 statsValue="$1,345"
                 statsIcon={<i className="fa fa-calendar-o" />}
                 statsIconText="Last day"
@@ -121,7 +129,7 @@ class Pricing extends Component {
             <Col lg={2} sm={6}>
               <StatsCard
                 bigIcon={<i className="pe-7s-graph1 text-danger" />}
-                statsText="Errors"
+                statsText="Cabbage"
                 statsValue="23"
                 statsIcon={<i className="fa fa-clock-o" />}
                 statsIconText="In the last hour"
@@ -130,7 +138,7 @@ class Pricing extends Component {
             <Col lg={2} sm={6}>
               <StatsCard
                 bigIcon={<i className="fa fa-twitter text-info" />}
-                statsText="Followers"
+                statsText="Banana"
                 statsValue="+45"
                 statsIcon={<i className="fa fa-refresh" />}
                 statsIconText="Updated now"
@@ -139,7 +147,7 @@ class Pricing extends Component {
             <Col lg={2} sm={6}>
               <StatsCard
                 bigIcon={<i className="pe-7s-graph1 text-danger" />}
-                statsText="Errors"
+                statsText="Cauliflower"
                 statsValue="23"
                 statsIcon={<i className="fa fa-clock-o" />}
                 statsIconText="In the last hour"
@@ -148,7 +156,7 @@ class Pricing extends Component {
             <Col lg={2} sm={6}>
               <StatsCard
                 bigIcon={<i className="pe-7s-graph1 text-danger" />}
-                statsText="Errors"
+                statsText="Apple"
                 statsValue="23"
                 statsIcon={<i className="fa fa-clock-o" />}
                 statsIconText="In the last hour"
@@ -161,7 +169,7 @@ class Pricing extends Component {
               <Card
                 statsIcon="fa fa-history"
                 id="chartHours"
-                title="Users Behavior"
+                title="Vegetable Price"
                 stats="Updated 3 minutes ago"
                 content={
                   <div>
@@ -223,31 +231,53 @@ class Pricing extends Component {
           <Row>
             <Col md={12}>
               <Card
-                title="Striped Table with Hover"
+                title="Vegetable Price"
                 category="Here is a subtitle for this table"
                 ctTableFullWidth
                 ctTableResponsive
                 content={
-                  <Table striped hover>
-                    <thead>
-                      <tr>
-                        {thArray.map((prop, key) => {
-                          return <th key={key}>{prop}</th>;
-                        })}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {tdArray.map((prop, key) => {
-                        return (
-                          <tr key={key}>
-                            {prop.map((prop, key) => {
-                              return <td key={key}>{prop}</td>;
-                            })}
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </Table>
+                	<div>
+                		<Row>
+                			<Col md={4}>
+                        		<DatePicker style={{ width: 250 }}/>
+                      		</Col>
+                      		<Col md={4}>
+                        		<Select
+		                          showSearch
+		                          style={{ width: 250 }}
+		                          placeholder="Select a person"
+		                          optionFilterProp="children"
+		                          filterOption={(input, option) =>
+		                            option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+		                          }
+		                        >
+	                          <Option value="jack">Jack</Option>
+	                          <Option value="lucy">Lucy</Option>
+	                          <Option value="tom">Tom</Option>
+	                        </Select>
+	                      </Col>
+		                </Row>
+		                  <Table striped hover>
+		                    <thead>
+		                      <tr>
+		                        {thArray.map((prop, key) => {
+		                          return <th key={key}>{prop}</th>;
+		                        })}
+		                      </tr>
+		                    </thead>
+		                    <tbody>
+		                      {tdArray.map((prop, key) => {
+		                        return (
+		                          <tr key={key}>
+		                            {prop.map((prop, key) => {
+		                              return <td key={key}>{prop}</td>;
+		                            })}
+		                          </tr>
+		                        );
+		                      })}
+		                    </tbody>
+		                  </Table>
+                      </div>
                 }
               />
             </Col>
