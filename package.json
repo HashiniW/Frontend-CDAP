@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "antd": "^4.5.2",
+    "axios": "^0.20.0",
     "bootstrap": "^3.4.1",
     "chartist": "0.10.1",
     "core-js": "3",
@@ -22,6 +23,7 @@
     "react-router-dom": "5.0.0",
     "react-scripts": "^3.0.0",
     "react-toggle": "4.0.2",
+    "save": "^2.4.0",
     "semantic-ui-css": "^2.3.3",
     "semantic-ui-react": "^0.82.4"
   },
