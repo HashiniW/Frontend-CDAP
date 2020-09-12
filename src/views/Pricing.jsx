@@ -32,10 +32,12 @@ class Pricing extends Component {
     this.state = {
       date: new Date(),
       vegiTiles: [],
+      vegiTables: {},
       isLoaded: false
     };
 
     this.loadTiles();
+    this.loadTable();
   }
 
   onChange = date => this.setState({ date })
@@ -57,6 +59,21 @@ class Pricing extends Component {
         this.setState({
           isLoaded: true,
           vegiTiles: result.data
+        });
+      }, (error) => {
+        this.setState({
+          isLoaded: true
+        });
+      })
+  }
+
+  loadTable() {
+    fetch("https://api.npoint.io/052304775de17e01a34e")
+      .then(res => res.json())
+      .then((result) => {
+        this.setState({
+          isLoaded: true,
+          vegiTables: result.data
         });
       }, (error) => {
         this.setState({
@@ -114,7 +131,7 @@ class Pricing extends Component {
                     </Row>
 
                     <ChartistGraph
-                      data={dataSales}
+                      data={this.state.vegiTables}
                       type="Line"
                       options={optionsSales}
                       responsiveOptions={responsiveSales}
@@ -125,25 +142,6 @@ class Pricing extends Component {
                   <div className="legend">{this.createLegend(legendSales)}</div>
                 }
               />
-            </Col>
-            <Col md={4}>
-              {/* <Card
-                statsIcon="fa fa-clock-o"
-                title="Email Statistics"
-                category="Last Campaign Performance"
-                stats="Campaign sent 2 days ago"
-                content={
-                  <div
-                    id="chartPreferences"
-                    className="ct-chart ct-perfect-fourth"
-                  >
-                    <ChartistGraph data={dataPie} type="Pie" />
-                  </div>
-                }
-                legend={
-                  <div className="legend">{this.createLegend(legendPie)}</div>
-                }
-              /> */}
             </Col>
           </Row>
 
