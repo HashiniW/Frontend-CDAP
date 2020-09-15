@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import 'react-dropdown/style.css';
 import ChartistGraph from "react-chartist";
-import { Grid, Row, Col, Table } from "react-bootstrap";
+import { Grid, Row, Col } from "react-bootstrap";
 
 import { thArray, tdArray } from "variables/Variables.jsx";
 import { Card } from "components/Card/Card.jsx";
 import { StatsCard } from "components/StatsCard/StatsCard.jsx";
-import { DatePicker, Select } from 'antd';
+import { DatePicker, Select, Table, Spin } from 'antd';
 import 'antd/dist/antd.css';
 
 import {
@@ -32,25 +32,36 @@ class Pricing extends Component {
     this.state = {
       date: new Date(),
       vegiTiles: [],
-      vegiTables: {},
+      vegiGraph: {},
+      vegiTable: [],
       isLoaded: false
     };
 
     this.loadTiles();
+    this.loadGraph();
     this.loadTable();
   }
 
+  columns = [
+    {
+      title: 'Vegitable name',
+      dataIndex: 'name',
+      key: 'name',
+    },
+    {
+      title: 'Description',
+      dataIndex: 'description',
+      key: 'description',
+    },
+    {
+      title: 'Price',
+      dataIndex: 'price',
+      key: 'price',
+      width: '15%'
+    },
+  ];
+
   onChange = date => this.setState({ date })
-  createLegend(json) {
-    var legend = [];
-    for (var i = 0; i < json["names"].length; i++) {
-      var type = "fa fa-circle text-" + json["types"][i];
-      legend.push(<i className={type} key={i} />);
-      legend.push(" ");
-      legend.push(json["names"][i]);
-    }
-    return legend;
-  }
 
   loadTiles() {
     fetch("https://api.npoint.io/093dc21fae3a3f83c042")
@@ -67,13 +78,28 @@ class Pricing extends Component {
       })
   }
 
-  loadTable() {
+  loadGraph() {
     fetch("https://api.npoint.io/052304775de17e01a34e")
       .then(res => res.json())
       .then((result) => {
         this.setState({
           isLoaded: true,
-          vegiTables: result.data
+          vegiGraph: result.data
+        });
+      }, (error) => {
+        this.setState({
+          isLoaded: true
+        });
+      })
+  }
+
+  loadTable() {
+    fetch("https://api.npoint.io/0cde0e8b27288ab5e298")
+      .then(res => res.json())
+      .then((result) => {
+        this.setState({
+          isLoaded: true,
+          vegiTable: result.data
         });
       }, (error) => {
         this.setState({
@@ -88,6 +114,9 @@ class Pricing extends Component {
         <Grid fluid>
 
           <Row>
+            {this.state.vegiTiles.length == 0 &&
+              <Col lg={12} sm={6} style={{ textAlign: 'center' }}><Spin size="large" /></Col>}
+
             {this.state.vegiTiles.map(element => {
               return <Col lg={2} sm={6}>
                 <StatsCard
@@ -131,7 +160,7 @@ class Pricing extends Component {
                     </Row>
 
                     <ChartistGraph
-                      data={this.state.vegiTables}
+                      data={this.state.vegiGraph}
                       type="Line"
                       options={optionsSales}
                       responsiveOptions={responsiveSales}
@@ -139,7 +168,11 @@ class Pricing extends Component {
                   </div>
                 }
                 legend={
-                  <div className="legend">{this.createLegend(legendSales)}</div>
+                  <div className="legend">
+                    <i className="fa fa-circle text-info" />Vegetable A
+                    <i className="fa fa-circle text-danger" />Vegetable B
+                    <i className="fa fa-circle text-warning" />Vegetable C
+                  </div>
                 }
               />
             </Col>
@@ -175,26 +208,7 @@ class Pricing extends Component {
                       </Col>
                     </Row>
 
-                    <Table striped hover>
-                      <thead>
-                        <tr>
-                          {thArray.map((prop, key) => {
-                            return <th key={key}>{prop}</th>;
-                          })}
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {tdArray.map((prop, key) => {
-                          return (
-                            <tr key={key}>
-                              {prop.map((prop, key) => {
-                                return <td key={key}>{prop}</td>;
-                              })}
-                            </tr>
-                          );
-                        })}
-                      </tbody>
-                    </Table>
+                    <Table rowKey={record => record.uid} dataSource={this.state.vegiTable} columns={this.columns} />
                   </div>
                 }
               />
