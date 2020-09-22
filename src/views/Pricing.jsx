@@ -37,9 +37,9 @@ class Pricing extends Component {
       isLoaded: false
     };
 
-    this.loadTiles();
-    this.loadGraph("https://api.npoint.io/052304775de17e01a34e");
-    this.loadTable();
+    this.loadTiles("https://api.npoint.io/093dc21fae3a3f83c042");
+    this.loadGraph("https://api.npoint.io/749190dd1ab9b0a882a8");
+    this.loadTable("https://api.npoint.io/0cde0e8b27288ab5e298");
   }
 
   columns = [
@@ -63,8 +63,8 @@ class Pricing extends Component {
 
   onChange = date => this.setState({ date })
 
-  loadTiles() {
-    fetch("https://api.npoint.io/093dc21fae3a3f83c042")
+  loadTiles(url) {
+    fetch(url)
       .then(res => res.json())
       .then((result) => {
         this.setState({
@@ -93,8 +93,8 @@ class Pricing extends Component {
       })
   }
 
-  loadTable() {
-    fetch("https://api.npoint.io/0cde0e8b27288ab5e298")
+  loadTable(url) {
+    fetch(url)
       .then(res => res.json())
       .then((result) => {
         this.setState({
@@ -120,7 +120,7 @@ class Pricing extends Component {
     if (dateString == today) {
       this.loadGraph("https://api.npoint.io/052304775de17e01a34e");
     } else {
-      this.loadGraph("https://api.npoint.io/b4f66b1c93844e4560fe");
+      this.loadGraph("https://api.npoint.io/749190dd1ab9b0a882a8");
     }
 
   }
@@ -152,7 +152,7 @@ class Pricing extends Component {
                 statsIcon="fa fa-history"
                 id="chartHours"
                 title="Vegetable Price"
-                category="Here is a subtitle for this table"
+                category="Prices according to selected cities"
                 content={
                   <div>
                     <Row>
@@ -171,9 +171,9 @@ class Pricing extends Component {
                 }
                 legend={
                   <div className="legend">
-                    <i className="fa fa-circle text-info" />Vegetable A
-                    <i className="fa fa-circle text-danger" />Vegetable B
-                    <i className="fa fa-circle text-warning" />Vegetable C
+                    <i className="fa fa-circle text-info" />Colombo
+                    <i className="fa fa-circle text-danger" />Kandy
+                    <i className="fa fa-circle text-warning" />Kurunegala
                   </div>
                 }
               />
@@ -198,6 +198,7 @@ class Pricing extends Component {
                     <Table
                       rowKey={record => record.uid}
                       dataSource={this.state.vegiTable}
+                      pagination={false}
                       columns={this.columns} />
                   </div>
                 }
