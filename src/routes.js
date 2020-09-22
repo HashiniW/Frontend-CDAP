@@ -41,20 +41,6 @@ const dashboardRoutes = [
     icon: "pe-7s-user",
     component: UserProfile,
     layout: "/admin"
-  },
-  {
-    path: "/maps",
-    name: "Maps",
-    icon: "pe-7s-map-marker",
-    component: Maps,
-    layout: "/admin"
-  },
-  {
-    path: "/notifications",
-    name: "Notifications",
-    icon: "pe-7s-bell",
-    component: Notifications,
-    layout: "/admin"
   }
 ];
 
