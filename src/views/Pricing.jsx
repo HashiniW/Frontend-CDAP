@@ -125,6 +125,23 @@ class Pricing extends Component {
 
   }
 
+  onChangeTable = (date, dateString) => {
+
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    today = yyyy + '-' + mm + '-' + dd;
+
+    if (dateString == today) {
+      this.loadTable("https://api.npoint.io/9de080645ed303df780e");
+    } else {
+      this.loadTable("https://api.npoint.io/9de080645ed303df780e");
+    }
+
+  }
+
   render() {
     return (
       <div className="content">
@@ -191,11 +208,13 @@ class Pricing extends Component {
                   <div>
                     <Row style={{ margin: 10 }}>
                       <Col md={4}>
-                        <DatePicker style={{ width: 250 }} />
+                        <DatePicker style={{ width: 250 }} onChange={this.onChangeTable} />
                       </Col>
                     </Row>
 
                     <Table
+                      size="small"
+                      bordered
                       rowKey={record => record.uid}
                       dataSource={this.state.vegiTable}
                       columns={this.columns} />
