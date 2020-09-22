@@ -184,7 +184,7 @@ class Pricing extends Component {
             <Col md={12}>
               <Card
                 title="Vegetable Price"
-                category="Here is a subtitle for this table"
+                category="Prices according to selected cities"
                 ctTableFullWidth
                 ctTableResponsive
                 content={
