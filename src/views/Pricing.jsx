@@ -38,7 +38,7 @@ class Pricing extends Component {
     };
 
     this.loadTiles();
-    this.loadGraph();
+    this.loadGraph("https://api.npoint.io/052304775de17e01a34e");
     this.loadTable();
   }
 
@@ -78,8 +78,8 @@ class Pricing extends Component {
       })
   }
 
-  loadGraph() {
-    fetch("https://api.npoint.io/052304775de17e01a34e")
+  loadGraph(url) {
+    fetch(url)
       .then(res => res.json())
       .then((result) => {
         this.setState({
@@ -106,6 +106,23 @@ class Pricing extends Component {
           isLoaded: true
         });
       })
+  }
+
+  onChangeGraph = (date, dateString) => {
+
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    today = yyyy + '-' + mm + '-' + dd;
+
+    if (dateString == today) {
+      this.loadGraph("https://api.npoint.io/052304775de17e01a34e");
+    } else {
+      this.loadGraph("https://api.npoint.io/b4f66b1c93844e4560fe");
+    }
+
   }
 
   render() {
@@ -140,22 +157,7 @@ class Pricing extends Component {
                   <div>
                     <Row>
                       <Col md={4}>
-                        <DatePicker style={{ width: 250 }} />
-                      </Col>
-                      <Col md={4}>
-                        <Select
-                          showSearch
-                          style={{ width: 250 }}
-                          placeholder="Select a person"
-                          optionFilterProp="children"
-                          filterOption={(input, option) =>
-                            option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                          }
-                        >
-                          <Option value="jack">Jack</Option>
-                          <Option value="lucy">Lucy</Option>
-                          <Option value="tom">Tom</Option>
-                        </Select>
+                        <DatePicker style={{ width: 250 }} onChange={this.onChangeGraph} />
                       </Col>
                     </Row>
 
@@ -191,24 +193,12 @@ class Pricing extends Component {
                       <Col md={4}>
                         <DatePicker style={{ width: 250 }} />
                       </Col>
-                      <Col md={4}>
-                        <Select
-                          showSearch
-                          style={{ width: 250 }}
-                          placeholder="Select a person"
-                          optionFilterProp="children"
-                          filterOption={(input, option) =>
-                            option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                          }
-                        >
-                          <Option value="jack">Jack</Option>
-                          <Option value="lucy">Lucy</Option>
-                          <Option value="tom">Tom</Option>
-                        </Select>
-                      </Col>
                     </Row>
 
-                    <Table rowKey={record => record.uid} dataSource={this.state.vegiTable} columns={this.columns} />
+                    <Table
+                      rowKey={record => record.uid}
+                      dataSource={this.state.vegiTable}
+                      columns={this.columns} />
                   </div>
                 }
               />
