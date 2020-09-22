@@ -39,19 +39,19 @@ class Pricing extends Component {
 
     this.loadTiles("https://api.npoint.io/093dc21fae3a3f83c042");
     this.loadGraph("https://api.npoint.io/749190dd1ab9b0a882a8");
-    this.loadTable("https://api.npoint.io/0cde0e8b27288ab5e298");
+    this.loadTable("https://api.npoint.io/9de080645ed303df780e");
   }
 
   columns = [
     {
-      title: 'Vegitable name',
+      title: 'Vegitable Name',
       dataIndex: 'name',
       key: 'name',
     },
     {
-      title: 'Description',
-      dataIndex: 'description',
-      key: 'description',
+      title: 'City',
+      dataIndex: 'city',
+      key: 'city',
     },
     {
       title: 'Price',
@@ -198,7 +198,6 @@ class Pricing extends Component {
                     <Table
                       rowKey={record => record.uid}
                       dataSource={this.state.vegiTable}
-                      pagination={false}
                       columns={this.columns} />
                   </div>
                 }
