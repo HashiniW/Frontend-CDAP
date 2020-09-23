@@ -3,7 +3,6 @@ import UserProfile from "views/UserProfile.jsx";
 import Demanding from "views/Demanding.jsx";
 import SupplierSelect from "views/SupplierSelect.jsx";
 import Tracing from "views/Tracing.jsx";
-import Maps from "views/Maps.jsx";
 import Notifications from "views/Notifications.jsx";
 
 const dashboardRoutes = [

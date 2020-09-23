@@ -37,14 +37,14 @@ class Pricing extends Component {
       isLoaded: false
     };
 
-    this.loadTiles("https://api.npoint.io/093dc21fae3a3f83c042");
-    this.loadGraph("https://api.npoint.io/749190dd1ab9b0a882a8");
+    this.loadTiles("https://api.npoint.io/c7dd6bf44af792914c46");
+    this.loadGraph("https://api.npoint.io/d736f255e01a6f138ebe");
     this.loadTable("https://api.npoint.io/9de080645ed303df780e");
   }
 
   columns = [
     {
-      title: 'Vegitable Name',
+      title: 'Vegetable Name',
       dataIndex: 'name',
       key: 'name',
     },
