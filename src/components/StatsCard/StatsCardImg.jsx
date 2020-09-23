@@ -9,7 +9,7 @@ export class StatsCardImg extends Component {
                     <Row>
                         <Col xs={5}>
                             <div>
-                                <img src={this.props.image} alt="farmer" width="290" />
+                                <img src={this.props.image} alt="farmer" style={{ width: '240px' }} />
                             </div>
                             <div className="numbers" style={{ textAlign: 'center' }}>
                                 <p>{this.props.statsText}</p>
