@@ -5,7 +5,7 @@ import { Grid, Row, Col } from "react-bootstrap";
 
 import { thArray, tdArray } from "variables/Variables.jsx";
 import { Card } from "components/Card/Card.jsx";
-import { StatsCard } from "components/StatsCard/StatsCard.jsx";
+import { StatsCardImg } from "components/StatsCard/StatsCardImg.jsx";
 import { DatePicker, Select, Table, Spin } from 'antd';
 import 'antd/dist/antd.css';
 
@@ -196,7 +196,8 @@ class SupplierSelect extends Component {
 
             {this.state.vegiTiles.map(element => {
               return <Col lg={4} sm={12}>
-                <StatsCard
+                <StatsCardImg
+                  image={element.image}
                   statsText={element.name}
                   statsValue={element.value}
                   statsIcon={<i className="fa fa-refresh" />}
