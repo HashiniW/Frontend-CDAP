@@ -6,7 +6,7 @@ import { Grid, Row, Col } from "react-bootstrap";
 import { thArray, tdArray } from "variables/Variables.jsx";
 import { Card } from "components/Card/Card.jsx";
 import { StatsCardImg } from "components/StatsCard/StatsCardImg.jsx";
-import { DatePicker, Select, Table, Spin } from 'antd';
+import { DatePicker, Select, Table, Spin, Input } from 'antd';
 import 'antd/dist/antd.css';
 
 import {
@@ -185,6 +185,21 @@ class SupplierSelect extends Component {
 
   }
 
+  searchPrice = (event) => {
+    var val = event.target.value;
+    if (val == 'carrot') {
+      this.loadTable("https://api.npoint.io/9de080645ed303df780e");
+    }
+  }
+
+  searchId = (event) => {
+    var val = event.target.value;
+    if (val == 'carrot') {
+      this.loadTable("https://api.npoint.io/9de080645ed303df780e");
+    }
+  }
+
+
   render() {
     return (
       <div className="content">
@@ -199,7 +214,7 @@ class SupplierSelect extends Component {
                 <StatsCardImg
                   image={element.image}
                   statsText={element.name}
-                  statsValue={element.value}
+                  statsValue={element.NIC}
                   statsIcon={<i className="fa fa-refresh" />}
                   statsIconText="Updated now"
                 />
@@ -209,7 +224,7 @@ class SupplierSelect extends Component {
 
           <Row>
             <Col md={12}>
-            <Card
+              <Card
                 title="Vegetable Price"
                 category="Prices according to selected cities"
                 ctTableFullWidth
@@ -218,7 +233,7 @@ class SupplierSelect extends Component {
                   <div>
                     <Row style={{ margin: 10 }}>
                       <Col md={4}>
-                        <DatePicker style={{ width: 250 }} onChange={this.onChangeTable} />
+                        <Input placeholder="Search" onChange={this.searchPrice} />
                       </Col>
                     </Row>
 
@@ -245,7 +260,7 @@ class SupplierSelect extends Component {
                   <div>
                     <Row style={{ margin: 10 }}>
                       <Col md={4}>
-                        <DatePicker style={{ width: 250 }} onChange={this.onChangeTable} />
+                        <Input placeholder="Search" onChange={this.searchId}/>
                       </Col>
                     </Row>
 
