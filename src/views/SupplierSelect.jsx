@@ -51,13 +51,6 @@ class SupplierSelect extends Component {
       width: '150px'
     },
     {
-      title: 'Vegetable Name',
-      dataIndex: 'name',
-      key: 'name',
-      align: 'center',
-      width: '150px'
-    },
-    {
       title: 'Demand (kg)',
       dataIndex: 'demand',
       key: 'demand',
@@ -65,15 +58,25 @@ class SupplierSelect extends Component {
       width: '150px'
     },
     {
+      title: 'Vegetable Name',
+      dataIndex: 'vegName',
+      key: 'vegName',
+      align: 'center',
+      width: '150px'
+    },
+
+    {
       title: 'Farmer ID',
-      dataIndex: 'fId',
-      key: 'fId',
+      dataIndex: 'supplierId',
+      key: 'supplierId',
       align: 'center',
       width: '150px'
     },
   ];
 
   tabSupColumns = [
+
+
     {
       title: 'Farmer ID',
       dataIndex: 'fId',
@@ -81,20 +84,15 @@ class SupplierSelect extends Component {
       align: 'center',
       width: '150px'
     },
+
     {
       title: 'Farmer Name',
-      dataIndex: 'name',
-      key: 'name',
+      dataIndex: 'fname',
+      key: 'fname',
       align: 'center',
       width: '150px'
     },
-    {
-      title: 'Contact Number',
-      dataIndex: 'number',
-      key: 'number',
-      align: 'center',
-      width: '150px'
-    },
+
     {
       title: 'Address',
       dataIndex: 'address',
@@ -102,6 +100,16 @@ class SupplierSelect extends Component {
       align: 'center',
       width: '150px'
     },
+    {
+
+      title: 'Contact Number',
+      dataIndex: 'contactNo',
+      key: 'contactNo',
+      align: 'center',
+      width: '150px'
+    },
+
+
   ];
 
   onChange = date => this.setState({ date })
@@ -151,52 +159,70 @@ class SupplierSelect extends Component {
       })
   }
 
-  onChangeGraph = (date, dateString) => {
+  onChangeGraph = (date, dateString, veg) => {
 
     var today = new Date();
+    var c1 = veg;
+    var t1 = veg;
+    var p1 = veg;
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = today.getFullYear();
 
     today = yyyy + '-' + mm + '-' + dd;
-
-    if (dateString == today) {
-      this.loadGraph("https://api.npoint.io/052304775de17e01a34e");
-    } else {
-      this.loadGraph("https://api.npoint.io/749190dd1ab9b0a882a8");
+     c1 = 'carrot';
+     t1 = 'Tomato';
+     p1 = 'Pumpkin';
+    // p1 = 14;
+    if (veg == c1) {
+      this.loadGraph("https://api.npoint.io/5aa0f931d0334237f6e9");
+    } else if (veg == t1){
+      this.loadGraph("https://api.npoint.io/6c7037a9749b66f574cd");
     }
+    else
+      this.loadGraph("https://api.npoint.io/1faa91570700a1cdf45a");
 
   }
 
-  onChangeTable = (date, dateString) => {
+  onChangeTable = (date, dateString, id) => {
 
     var today = new Date();
+    var f1 = id;
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = today.getFullYear();
 
     today = yyyy + '-' + mm + '-' + dd;
+    f1 = '18'
 
-    if (dateString == today) {
-      this.loadTable("https://api.npoint.io/9de080645ed303df780e");
+    if (id == f1) {
+      this.loadTable("https://api.npoint.io/952971825daaf5bbf491");
     } else {
-      this.loadTable("https://api.npoint.io/9de080645ed303df780e");
+      this.loadTable("https://api.npoint.io/daf2c4854715fd777657");
     }
 
   }
 
-  searchPrice = (event) => {
+  searchPrice = (event, veg) => {
     var val = event.target.value;
+    var val1 = event.target.value;
+    var val2 = event.target.value;
     if (val == 'carrot') {
-      this.loadTable("https://api.npoint.io/9de080645ed303df780e");
+      this.loadTable("https://api.npoint.io/5aa0f931d0334237f6e9");
+    }else if (val1 == 'Tomato'){
+      this.loadTable("https://api.npoint.io/6c7037a9749b66f574cd");
     }
+    else
+      this.loadTable("https://api.npoint.io/1faa91570700a1cdf45a");
   }
 
-  searchId = (event) => {
+  searchId = (event, id) => {
     var val = event.target.value;
-    if (val == 'carrot') {
-      this.loadTable("https://api.npoint.io/9de080645ed303df780e");
+    if (val == '18') {
+      this.loadTable("https://api.npoint.io/952971825daaf5bbf491");
     }
+    else
+      this.loadTable("https://api.npoint.io/daf2c4854715fd777657");
   }
 
 
@@ -225,8 +251,8 @@ class SupplierSelect extends Component {
           <Row>
             <Col md={12}>
               <Card
-                title="Vegetable Price"
-                category="Prices according to selected cities"
+                title="Best Farmer"
+                category="Sorting vegetables and Farmers"
                 ctTableFullWidth
                 ctTableResponsive
                 content={
@@ -252,8 +278,8 @@ class SupplierSelect extends Component {
           <Row>
             <Col md={12}>
               <Card
-                title="Vegetable Price"
-                category="Prices according to selected cities"
+                title="Best Farmer"
+                category="Best Farmer of the month"
                 ctTableFullWidth
                 ctTableResponsive
                 content={

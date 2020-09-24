@@ -23,7 +23,7 @@ class Sidebar extends Component {
     window.addEventListener("resize", this.updateDimensions.bind(this));
   }
   render() {
-    let image = "https://i.ibb.co/TtpvNQW/sidebar-1.jpg";
+    let image = "https://i.ibb.co/TtpvNQW/sidebar-5.jpg";
     const sidebarBackground = {
       backgroundImage: "url(" + image + ")"
     };

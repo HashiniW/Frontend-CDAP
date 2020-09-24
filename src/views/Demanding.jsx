@@ -123,16 +123,25 @@ class Demanding extends Component {
   onChangeGraph = (date, dateString) => {
 
     var today = new Date();
+    var tomorrow = new Date();
+    var week1 = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = today.getFullYear();
 
     today = yyyy + '-' + mm + '-' + dd;
-
+    tomorrow = yyyy + '-' + mm + '-' + dd;
+    week1 = '2020-09-13';
+     
     if (dateString == today) {
-      this.loadGraph("https://api.npoint.io/052304775de17e01a34e");
-    } else {
-      this.loadGraph("https://api.npoint.io/749190dd1ab9b0a882a8");
+      this.loadGraph("https://api.npoint.io/9ec8bc8f713e2a86e001");
+    }else if(dateString == tomorrow){
+      this.loadGraph("https://api.npoint.io/9153199bf8201861b52b");
+    }else if(dateString == week1){
+      this.loadGraph("https://api.npoint.io/34ab859d07c8ce9cb09c");
+    }
+    else {
+      this.loadGraph(" https://api.npoint.io/717d7460e6d0c252b37c");
     }
 
   }
@@ -140,16 +149,25 @@ class Demanding extends Component {
   onChangeTable = (date, dateString) => {
 
     var today = new Date();
+    var tomorrow = new Date();
+    var week1 = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = today.getFullYear();
 
     today = yyyy + '-' + mm + '-' + dd;
+    tomorrow = yyyy + '-' + mm + '-' + dd;
+    week1 = '2020-09-13';
 
     if (dateString == today) {
-      this.loadTable("https://api.npoint.io/9de080645ed303df780e");
-    } else {
-      this.loadTable("https://api.npoint.io/9de080645ed303df780e");
+      this.loadTable("https://api.npoint.io/9babe588499de5d36954");
+    }else if(dateString == tomorrow){
+      this.loadTable("https://api.npoint.io/366beee770ebac70342d");
+    }else if(dateString == week1){
+      this.loadTable("https://api.npoint.io/97e9541de53600fb0c8e");
+    }
+    else {
+      this.loadTable("https://api.npoint.io/70baa28d36bc6d387098");
     }
 
   }
@@ -181,7 +199,7 @@ class Demanding extends Component {
                 statsIcon="fa fa-history"
                 id="chartHours"
                 title="Vegetable Demand"
-                category="Prices according to selected outlets"
+                category="Demand according to selected outlets"
                 content={
                   <div>
                     <Row>
@@ -213,7 +231,7 @@ class Demanding extends Component {
             <Col md={12}>
               <Card
                 title="Vegetable Demand"
-                category="Prices according to selected cities"
+                category="Demand in different outlets"
                 ctTableFullWidth
                 ctTableResponsive
                 content={

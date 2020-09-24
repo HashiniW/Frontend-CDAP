@@ -25,7 +25,9 @@ class FixedPlugin extends Component {
   render() {
     return (
       <div className="fixed-plugin">
+        <div id="fixedPluginClasses" className={this.props.fixedClasses}>
         
+        </div>
       </div>
     );
   }
