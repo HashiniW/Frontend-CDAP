@@ -37,9 +37,9 @@ class SupplierSelect extends Component {
       isLoaded: false
     };
 
-    this.loadTiles();
+    this.loadTiles("https://api.npoint.io/b28290344945893d077a");
     this.loadGraph("https://api.npoint.io/749190dd1ab9b0a882a8");
-    this.loadTable({ "vegi_name": "carrot" });
+    this.loadTable("https://api.npoint.io/9de080645ed303df780e");
   }
 
   tabVegColumns = [
@@ -114,11 +114,8 @@ class SupplierSelect extends Component {
 
   onChange = date => this.setState({ date })
 
-  loadTiles() {
-    fetch('http://127.0.0.1:5000/get-suplier-list', {
-      method: 'POST',
-      body: {}
-    })
+  loadTiles(url) {
+    fetch(url)
       .then(res => res.json())
       .then((result) => {
         this.setState({
@@ -147,11 +144,8 @@ class SupplierSelect extends Component {
       })
   }
 
-  loadTable(body) {
-    fetch('http://127.0.0.1:5000/get-best-farmer', {
-      method: 'POST',
-      body: body
-    })
+  loadTable(url) {
+    fetch(url)
       .then(res => res.json())
       .then((result) => {
         this.setState({
@@ -214,15 +208,13 @@ class SupplierSelect extends Component {
     var val1 = event.target.value;
     var val2 = event.target.value;
 
-    this.loadTable({ "vegi_name": val });
-
-    // if (val == 'carrot') {
-    //   this.loadTable("https://api.npoint.io/5aa0f931d0334237f6e9");
-    // } else if (val1 == 'Tomato') {
-    //   this.loadTable("https://api.npoint.io/6c7037a9749b66f574cd");
-    // }
-    // else
-    //   this.loadTable("https://api.npoint.io/1faa91570700a1cdf45a");
+    if (val == 'carrot') {
+      this.loadTable("https://api.npoint.io/5aa0f931d0334237f6e9");
+    } else if (val1 == 'Tomato') {
+      this.loadTable("https://api.npoint.io/6c7037a9749b66f574cd");
+    }
+    else
+      this.loadTable("https://api.npoint.io/1faa91570700a1cdf45a");
   }
 
   searchId = (event, id) => {

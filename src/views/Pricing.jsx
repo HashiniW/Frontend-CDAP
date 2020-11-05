@@ -37,7 +37,7 @@ class Pricing extends Component {
       isLoaded: false
     };
 
-    this.loadTiles("https://api.npoint.io/c7dd6bf44af792914c46");
+    this.loadTiles();
     this.loadGraph("https://api.npoint.io/d736f255e01a6f138ebe");
     this.loadTable("https://api.npoint.io/9de080645ed303df780e");
   }
@@ -63,8 +63,11 @@ class Pricing extends Component {
 
   onChange = date => this.setState({ date })
 
-  loadTiles(url) {
-    fetch(url)
+  loadTiles() {
+    fetch('/get-vegi-tiles', {
+      method: 'POST',
+      body: {}
+    })
       .then(res => res.json())
       .then((result) => {
         this.setState({
